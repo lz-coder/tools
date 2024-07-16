@@ -29,12 +29,13 @@ function usage() {
   echo " $PROGNAME COMMAND"
   echo
   echo "Commands:"
-  echo " help               Print this Help."
-  echo " setup-shell        Setup user shell."
-  echo " setup-nvm          Setup Node Version Manager"
-  echo " setup-sudoers      Setup sudoers rules."
-  echo " starship-update    Update starship prompt."
-  echo " version            Print software version and exit."
+  echo " help                         Print this Help."
+  echo " setup-shell                  Setup user shell."
+  echo " setup-nvm                    Setup Node Version Manager"
+  echo " setup-vscode-wrappers        Setup wrapper for use vscode with podman/distrobox"
+  echo " setup-sudoers                Setup sudoers rules."
+  echo " update-starship              Update starship prompt."
+  echo " version                      Print software version and exit."
   echo
 }
 
@@ -134,6 +135,33 @@ function setup_nvm() {
   fi
 }
 
+function setup_vscode_dc_wrappers() {
+  if test ! -e $HOME/.local/bin/podman-host; then
+    echo
+    echo "Configuring podman-host wrapper"
+    echo "https://github.com/89luca89/distrobox/blob/main/docs/posts/integrate_vscode_distrobox.md#third-step-podman-wrapper"
+    curl -s https://raw.githubusercontent.com/89luca89/distrobox/main/extras/podman-host -o ~/.local/bin/podman-host
+    chmod +x ~/.local/bin/podman-host
+    echo "podman-host wrapper configured"
+    echo
+  else
+    echo "podman-host wrapper already configured in your system"
+  fi
+  if test ! -e $HOME/.local/bin/vscode-distrobox; then
+    echo
+    echo "Configuring vscode-distrobox wrapper"
+    echo "https://github.com/89luca89/distrobox/blob/main/docs/posts/integrate_vscode_distrobox.md#open-vscode-directly-attached-to-our-distrobox"
+    echo
+    curl -s https://raw.githubusercontent.com/89luca89/distrobox/main/extras/vscode-distrobox -o ~/.local/bin/vscode-distrobox
+    chmod +x ~/.local/bin/vscode-distrobox
+    echo "vscode-distrobox wrapper configured"
+    echo
+  else
+    echo "vscode-distrobox wrapper already configured in your system"
+  fi
+  
+}
+
 while [ "$1" != "" ]; do
   PARAM=`echo $1 | awk -F= '{print $1}'`
   case $PARAM in
@@ -153,7 +181,11 @@ while [ "$1" != "" ]; do
       setup_nvm
       exit
       ;;
-    starship-update)
+    setup-vscode-wrappers)
+      setup_vscode_dc_wrappers
+      exit
+      ;;
+    update-starship)
       update_starship
       exit
       ;;
