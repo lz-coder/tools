@@ -1,2 +1,1 @@
-# Tools
-**Scripts and small tools for my usage**
+# Scripts and small utilities
