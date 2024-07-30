@@ -21,7 +21,7 @@ getcmd=""
 if [ -f /bin/fetch ]; then
 	getcmd="fetch -o -"
 elif [ -f /bin/curl ]; then
-	getprog="curl -fsSL"
+	getcmd="curl -fsSL"
 else
 	echo "fetch and curl not found, install one"
 	exit 1
@@ -58,4 +58,3 @@ echo ZSH="${HOME}/.oh-my-zsh" >> "${HOME}"/.zshrc
 write_zsh_config
 echo
 echo "SETUP FINISHED"
-exit 0
