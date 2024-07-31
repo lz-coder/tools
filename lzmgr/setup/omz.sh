@@ -1,5 +1,9 @@
 #!/bin/sh
 #
+if [ -f /bin/zsh ]; then
+	echo "zsh not installed, install it"
+	exit 1
+fi
 
 if [ -d $HOME/.oh-my-zsh ]; then
 	echo "Oh my zsh already installed"
