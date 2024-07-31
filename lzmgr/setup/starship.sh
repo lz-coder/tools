@@ -13,6 +13,10 @@ fi
 tmpdir="$HOME/.local"
 bindir="$HOME/.local/bin"
 
+if [ ! -d $bindir ]; then
+	mkdir $bindir
+fi
+
 message=""
 action=""
 
