@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-if [ -f /bin/zsh ]; then
+if [ ! -f /bin/zsh ]; then
 	echo "zsh not installed, install it"
 	exit 1
 fi
