@@ -18,7 +18,7 @@ if [ -d $HOME/.local/share/fonts/meslo-nerd ]; then
 	action="updating"
 else
 	message="installed"
-	action="updating"
+	action="installing"
 fi
 
 echo
