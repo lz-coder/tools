@@ -1,0 +1,79 @@
+#!/bin/env python
+
+import argparse
+import os
+import tomllib
+import subprocess
+
+scriptsPath = "./setup"
+simpleScriptsPath = os.path.join(scriptsPath, "simple")
+descFileName = "descs.toml"
+simpleScriptsDescFilePath = os.path.join(simpleScriptsPath, descFileName)
+setupScriptsPath = os.path.join(scriptsPath, "setup")
+
+
+parser = argparse.ArgumentParser(
+  prog="lzmgr",
+  description="a dead simple script runner",
+  epilog="lzmgr Copyright © 2024 lz-coder",
+)
+
+parser.add_argument("-l", "--list", help="List all scripts", action="store_true")
+parser.add_argument(
+  "-r",
+  "--run",
+  help="Execute a script",
+  action="store",
+  nargs="+",
+  metavar="script",
+)
+
+def run_script(script):
+  simpleScripts = get_simple_scripts()
+  if not script in simpleScripts:
+    print("This script does not exists")
+    return 1
+  subprocess.run(f"sh {simpleScriptsPath}/{script}", shell=True)
+
+def get_simple_scripts():
+  try:
+    scripts = [
+      file for file in os.listdir(simpleScriptsPath)
+      if os.path.isfile(os.path.join(simpleScriptsPath, file))
+      if not file.endswith(".toml")
+    ]
+    return scripts
+  except FileNotFoundError:
+    print("[ERROR > listing simple scripts] >: You need to create a dir called 'simple' inside your main script path")
+    return []
+
+
+def list_simple_scripts():
+  data = None
+  if os.path.exists(simpleScriptsDescFilePath):
+    with open(simpleScriptsDescFilePath, "rb") as file:
+      data = tomllib.load(file)
+
+  try:
+    print("Listing SIMPLE Scripts: \n")
+    scriptsToList = get_simple_scripts()
+
+    for i in range(len(scriptsToList)):
+      scriptDesc = ""
+      if data and scriptsToList[i] in data.keys():
+        scriptDesc = data[scriptsToList[i]]
+
+      print(f"{scriptsToList[i]}:", scriptDesc)
+
+  except FileNotFoundError:
+    print("[ERROR > listing simple scripts] >: You need to create a dir called 'simple' inside your main script path")
+
+if __name__ == "__main__":
+  args = parser.parse_args()
+
+  if args.list:
+    list_simple_scripts()
+
+  if args.run:
+    scriptToRun = args.run[0]
+    run_script(scriptToRun)
