@@ -5,17 +5,16 @@ import os
 import tomllib
 import subprocess
 
-scriptsPath = "./setup"
-simpleScriptsPath = os.path.join(scriptsPath, "simple")
+simpleScriptsPath = "./simple"
 descFileName = "descs.toml"
 simpleScriptsDescFilePath = os.path.join(simpleScriptsPath, descFileName)
-setupScriptsPath = os.path.join(scriptsPath, "setup")
+setupScriptsPath = "./setup"
 
 
 parser = argparse.ArgumentParser(
-  prog="lzmgr",
-  description="a dead simple script runner",
-  epilog="lzmgr Copyright © 2024 lz-coder",
+  prog="runner",
+  description="the script runner",
+  epilog="builded by lzcoder (http://github.com/lz-coder)",
 )
 
 parser.add_argument("-l", "--list", help="List all scripts", action="store_true")
