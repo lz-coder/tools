@@ -1,0 +1,13 @@
+[Unit]
+Description=update manager
+After=network.target
+StartLimitIntervalSec=60
+StartLimitBurst=4
+
+[Service]
+ExecStart=/home/lzcoder/.local/bin/upman
+Restart=false
+RestartSec=1
+
+[Install]
+WantedBy=default.target
