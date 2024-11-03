@@ -18,14 +18,15 @@ else
 	exit 1
 fi
 
-if [ "$SHELL" = "/usr/bin/zsh" ]; then
+if [ "$SHELL" = "/usr/bin/zsh" ] || [ "$SHELL" = "/bin/zsh" ]; then
 	echo "Activating for zsh"
 	echo "eval \"\$($HOME/.local/bin/mise activate zsh)\"" >> "/$HOME/.zshrc"
-fi
-
-if [ "$SHELL" = "/usr/bin/fish" ] || [ "$SHELL" = "/usr/bin/fish-shell" ]; then
+elif [ "$SHELL" = "/usr/bin/fish" ] || [ "$SHELL" = "/usr/bin/fish-shell" ]; then
 	echo "Activating for fish"
 	echo '~/.local/bin/mise activate fish | source' >> "$HOME/.config/fish/conf.d/mise.fish"
+elif [ "$SHELL" = "/usr/bin/bash" ] || [ "$SHELL" = "/bin/bash" ]; then
+	echo "Activation for Bash"
+	echo "eval \"\$($HOME/.local/bin/mise activate bash)\"" >> "/$HOME/.bashrc"
 fi
 
 echo "mise configured..."
