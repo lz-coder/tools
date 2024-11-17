@@ -1,0 +1,13 @@
+[fedorabx]
+image=registry.fedoraproject.org/fedora-toolbox:latest
+additional_packages="git-core gh fastfetch helix glances htop"
+init=false
+nvidia=false
+pull=true
+entry=true
+start_now=false
+# Add Terra repo
+init_hooks="dnf install -y --repofrompath 'terra,https://repos.fyralabs.com/terra41' --setopt='terra.gpgkey=https://repos.fyralabs.com/terra41/key.asc' terra-release"
+init_hooks="dnf install -y zed codium"
+exported_apps="zed codium"
+
