@@ -1,2 +1,7 @@
 "mise.sh" = "Install mise tool"
 "ideapad-sudoers-rule.sh" = "Apply sudoers rule for ideapad conservation mode Gnome Shell extension"
+"git-configs.sh" = "apply git configs"
+"nerd_fonts_meslo.sh" = "install nerd font: meslo"
+"omz.sh" = "install and configure Oh My Zsh"
+"shell.sh" = "configure zsh, runs starship.sh, nerd_fonts_meslo.sh, omz.sh"
+"fedora-flutter-setup.sh" = "install pkgs for flutter development in a Fedora Linux system"
