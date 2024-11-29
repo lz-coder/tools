@@ -1,11 +1,11 @@
 [tumbleweed]
 image=registry.opensuse.org/opensuse/distrobox:latest
-additional_packages="git-core gh fastfetch helix glances htop zed lazygit opi"
+additional_packages="git-core gh fastfetch helix glances htop zed lazygit opi psmisc git-cola"
 init=false
 nvidia=false
 pull=true
 entry=true
 start_now=false
 init_hooks="opi -n codium"
-exported_apps="zed codium"
+exported_apps="zed codium git-cola"
 
