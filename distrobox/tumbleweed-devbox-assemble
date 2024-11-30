@@ -1,6 +1,6 @@
 [tumbleweed]
 image=registry.opensuse.org/opensuse/distrobox:latest
-additional_packages="git-core gh fastfetch helix glances htop zed lazygit opi psmisc git-cola"
+additional_packages="git-core gh fastfetch helix glances htop zed lazygit opi psmisc git-cola dirmngr"
 init=false
 nvidia=false
 pull=true
